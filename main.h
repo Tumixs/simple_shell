@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 /*
- * simple_shell: main.h
+ * file: main.h
  * Author: Asere Oluwatumise .S
  */
 

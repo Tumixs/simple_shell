@@ -6,7 +6,7 @@
 #include "main.h"
 #include <string.h>
 
-int main()
+int main(void)
 {
 	char *ptr1 = NULL, *ptr2 = NULL;
 	char str1[] = "Hello World!";
