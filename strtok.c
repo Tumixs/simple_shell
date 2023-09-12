@@ -2,7 +2,7 @@
  * File: strtok.c
  * Author: Asere Oluwatumise.c
  */
-#include "main.h"
+#include "common.h"
 /**
  * _strtok - Breaks a string into tokens.
  * @str: String to break

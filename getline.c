@@ -2,7 +2,7 @@
  * File: getline.c
  * Author: Asere Oluwatumise S.
  */
-#include "main.h"
+#include "common.h"
 /**
  * _getline - Gets a line of text.
  * @line: Pointer to buffer holding text.
