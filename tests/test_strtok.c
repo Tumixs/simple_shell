@@ -3,7 +3,7 @@
  * Author: Asere Oluwatumise .S
  * -- Comparing standard lib strtok() to custom _strok() --
  */
-#include "main.h"
+#include "common.h"
 void __attribute__((constructor)) strtok_test(void);
 /**
  * strtok_test

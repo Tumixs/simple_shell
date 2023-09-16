@@ -16,8 +16,8 @@
 #include <sys/stat.h>
 
 #define UNUSED __attribute__((unused))
+
 /*char *prompt = "$ ";*/
-extern char **environ;				 /* Defualt environment */
 void promptf(void) __attribute__((constructor)); /* constructor */
 ssize_t _getline(char **line, size_t *len, FILE *stream);
 char *_strtok(char *str, const char *delim);

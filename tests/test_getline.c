@@ -3,7 +3,7 @@
  * Author: Asere Oluwatumise S.
  * Comapring std-lib getline() with custom build
  */
-#include "main.h"
+#include "common.h"
 #include <string.h>
 
 int main(void)

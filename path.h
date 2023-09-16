@@ -12,8 +12,8 @@
  */
 typedef struct path
 {
-	char *pathname;
 	struct path *next;
+	char *pathname;
 } path;
 
 path *path_lt;
