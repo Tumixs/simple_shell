@@ -2,6 +2,10 @@
  * Environment methods
  * Author: Asere Oluwatumise S.
  */
+
+/* setenv() and unsetenv() are not compliant with task declaration. */
+/* They are compliant with the glibc */
+
 #include "common.h"
 #include "env.h"
 
@@ -26,7 +30,6 @@ char **build_env(const char *append, const char *remove)
 	env_copy = malloc((++len) * sizeof(char *));
 	if (env_copy == NULL)
 	{
-		write(STDERR_FILENO, "Error: failed to get environment\n", 33);
 		return (NULL);
 	}
 	env_copy[len - 1] = NULL;
@@ -94,7 +97,7 @@ char *_getenv(const char *name)
 /**
  * print_env - Prints the environment.
  */
-void print_env(void)
+int print_env(UNUSED char **env)
 {
 	int i;
 
@@ -103,6 +106,7 @@ void print_env(void)
 		write(STDIN_FILENO, environ[i], strlen(environ[i]));
 		write(STDIN_FILENO, "\n", 1);
 	}
+	return (0);
 }
 
 /**
@@ -129,27 +133,19 @@ void free_env(char **env)
 int _setenv(const char *name, const char *value, int overwrite)
 {
 	char *new = NULL, **old = NULL, **new_environ = NULL;
-	int i;
 
 	if (!name)
 		return (-1);
-	new = malloc((strlen(name) + strlen(value) + 2) * sizeof(char)); /* 1 for = */
-	if (new == NULL)
+	/* Not required by ALX checker */
+	if (strchr(name, '=') || strchr(value, '='))
 	{
-		write(STDERR_FILENO, "Error: failed to malloc\n", 28);
+		write(STDERR_FILENO, "Error: name cannot contain an =\n", 32);
 		return (-1);
 	}
-	for (i = 0; name[i]; i++)
-	{
-		if (name[i] == '=')
-		{
-			write(STDERR_FILENO, "Error: name cannot contain an =\n", 32);
-			free(new);
-			return (-1);
-		}
-		new[i] = name[i];
-	}
-	new[i] = '\0';
+	new = malloc((strlen(name) + strlen(value) + 2) * sizeof(char)); /* 1 for = */
+	if (new == NULL)
+		return (-1);
+	strcpy(new, name);
 	strcat(new, "=");
 	strcat(new, value);
 	/* Check if new exists in current environ */
@@ -182,18 +178,18 @@ int _setenv(const char *name, const char *value, int overwrite)
  *
  * Return: Retur2ns 0 on success, otherwise -1.
  */
-int _unsetenv(UNUSED const char *name)
+int _unsetenv(const char *name)
 {
-	char **old = NULL;
+	char **new = NULL;
 
 	if (_getenv(name) != NULL)
 	{
-		old = build_env(NULL, name);
-		if (old == NULL)
+		new = build_env(NULL, name);
+		if (new == NULL)
 			return (-1);
 		free_env(environ);
 		environ = NULL;
-		environ = old;
+		environ = new;
 	}
 	return (0);
 }

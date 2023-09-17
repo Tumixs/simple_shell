@@ -12,7 +12,7 @@ int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
 char *_getenv(const char *name);
 char **_getenvaddr(const char *name); /* Gets the direct address of the environ varaible */
-void print_env(void); /* env */
+int print_env(UNUSED char **env); /* env */
 void free_env(char **);
 
 #endif
