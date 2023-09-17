@@ -1,6 +1,6 @@
 /**
  * Shell Builtins.
- * Author: Asere Oluwatumise S.
+ * Author: Asere Oluwatumise S. & Oladosu adebisi L.
  */
 #include "common.h"
 #include "builtin.h"

@@ -1,6 +1,6 @@
 /*
  * simple_shell: test_strtok.c
- * Author: Asere Oluwatumise .S
+ * Author: Asere Oluwatumise .S & Oladosu adebisi L.
  * -- Comparing standard lib strtok() to custom _strok() --
  */
 #include "common.h"

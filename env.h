@@ -1,6 +1,6 @@
 /*
  * Defualt environment methods
- * Author: Asere Oluwatumise S.
+ * Author: Asere Oluwatumise S. & Oladosu adebisi L.
  */
 #ifndef ENV_H
 #define ENV_H

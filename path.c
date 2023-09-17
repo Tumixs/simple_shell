@@ -1,6 +1,6 @@
 /*
  * Linked list structure for environment PATH.
- * Author: Asere Oluwatumise S.
+ * Author: Asere Oluwatumise S. & Oladosu adebisi L.
  */
 #include "common.h"
 #include "path.h"
@@ -59,11 +59,11 @@ path *append_path(path *head, char *pathname)
 		head = malloc(sizeof(path));
 		if (head == NULL)
 			return (NULL); /* err_handle*/
-		head->pathname = malloc(sizeof(char) * (strlen(pathname) + 1));
+		head->pathname = malloc(sizeof(char) * (_strlen(pathname) + 1));
 		if (head->pathname == NULL)
 			return (NULL);
 		/*head->pathname = pathname;*/
-		strcpy(head->pathname, pathname);
+		_strcpy(head->pathname, pathname);
 		head->next = NULL;
 		return (head);
 	}
@@ -73,11 +73,11 @@ path *append_path(path *head, char *pathname)
 	nxt_node = malloc(sizeof(path));
 	if (nxt_node == NULL)
 		return (NULL); /* err_handle*/
-	nxt_node->pathname = malloc(sizeof(char) * (strlen(pathname) + 1));
+	nxt_node->pathname = malloc(sizeof(char) * (_strlen(pathname) + 1));
 	if (nxt_node->pathname == NULL)
 		return (NULL);
 	/*nxt_node->pathname = pathname;*/
-	strcpy(nxt_node->pathname, pathname);
+	_strcpy(nxt_node->pathname, pathname);
 	nxt_node->next = NULL;
 	dup->next = nxt_node;
 
@@ -97,10 +97,10 @@ path *build_pathlist()
 	path *head = NULL;
 
 	tmp = _getenv("PATH");
-	env_path = malloc(sizeof(char) * (strlen(tmp) + 1));
+	env_path = malloc(sizeof(char) * (_strlen(tmp) + 1));
 	if (env_path == NULL)
 		return (NULL);
-	strcpy(env_path, tmp);
+	_strcpy(env_path, tmp);
 	header = _strtok(env_path, "=");
 	if (!header)
 		return (NULL);
@@ -130,15 +130,15 @@ char *getcmdpath(char *cmd, path *path_lt)
 	while (path_copy != NULL)
 	{
 
-		j = strlen(path_copy->pathname);
+		j = _strlen(path_copy->pathname);
 		dir = malloc((i + j + 2) * (sizeof(char))); /* extra 1 for the slash */
 		if (dir == NULL)
 		{
 			perror("path malloc\n");
 		}
-		strcpy(dir, path_copy->pathname);
-		strcat(dir, "/");
-		strcat(dir, cmd);
+		_strcpy(dir, path_copy->pathname);
+		_strcat(dir, "/");
+		_strcat(dir, cmd);
 		if (stat(dir, &st) == 0)
 			return (dir);
 		path_copy = path_copy->next;

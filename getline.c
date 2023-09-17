@@ -1,6 +1,6 @@
 /*
  * File: getline.c
- * Author: Asere Oluwatumise S.
+ * Author: Asere Oluwatumise S. & Oladosu adebisi L.
  */
 #include "common.h"
 /**

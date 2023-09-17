@@ -27,14 +27,14 @@ int main(void)
 	/* DOC */
 	printf("\nTesting `_setenv`: \n");
 	printf("Doing:\n"
-	"_setenv(AUTHOR, ASERE OLUWATUMISE, 1)\n"
-	"_setenv(AUTHOR=, ASERE OLUWATUMISE, 1)\n"
-	"_setenv(USER, ASERE OLUWATUMISE, 1)\n");
+	"_setenv(AUTHOR, ASERE OLUWATUMISE & OLADOSUADEBISI, 2)\n"
+	"_setenv(AUTHOR=, ASERE OLUWATUMISE & OLADOSU ADEBISI, 2)\n"
+	"_setenv(USER, ASERE OLUWATUMISE & OLADOSU ADEBISI, 2)\n");
 	fflush(NULL);
 	/* Action */
-	_setenv("AUTHOR", "ASERE OLUWATUMISE", 1);
-	_setenv("AUTHOR=", "ASERE OLUWATUMISE", 1);
-	_setenv("USER", "ASERE OLUWATUMISE", 1);
+	_setenv("AUTHOR", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
+	_setenv("AUTHOR=", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
+	_setenv("USER", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
 	/* OUT */
 	printf("Printing environment:\n");
 	fflush(NULL);
@@ -59,15 +59,15 @@ int main(void)
 	/* 4 */
 	/* Doc */
 	printf("Doing: \n"
-	"_setenv(AUTHOR, ASERE OLUWATUMISE, 1)\n"
-	"_setenv(AUTHOR=, ASERE OLUWATUMISE, 1)\n"
-	"_setenv(USER, ASERE OLUWATUMISE, 1)\n"
+	"_setenv(AUTHOR, ASERE OLUWATUMISE & OLADOSU ADEBISI, 2)\n"
+	"_setenv(AUTHOR=, ASERE OLUWATUMISE & OLADOSU ADEBISI, 2)\n"
+	"_setenv(USER, ASERE OLUWATUMISE & OLADOSU ADEBISI, 2)\n"
 	"_unsetenv(USER)\n");
 	fflush(NULL);
 	/* Action */
-	_setenv("AUTHOR", "ASERE OLUWATUMISE", 1);
-	_setenv("AUTHOR=", "ASERE OLUWATUMISE", 1);
-	_setenv("USER", "ASERE OLUWATUMISE", 1);
+	_setenv("AUTHOR", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
+	_setenv("AUTHOR=", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
+	_setenv("USER", "ASERE OLUWATUMISE" & "OLADOSU ADEBISI", 2);
 	_unsetenv("USER");
 	/* OUT */
 	printf("Printing environment:\n");
