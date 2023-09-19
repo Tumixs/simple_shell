@@ -3,17 +3,17 @@
  * Author: Asere Oluwatumise .S
  * -- Comparing standard lib strtok() to custom _strok() --
  */
-#include "common.h"
-void __attribute__((constructor)) strtok_test(void);
+#include "../common.h"
+void strtok_test(void);
 /**
  * strtok_test
  */
-void __attribute__((constructor)) strtok_test(void)
+void strtok_test(void)
 {
-	char str1[] = "I really love programming";
-	char str2[] = "I really love programming";
-	char str3[] = "         love            ";
-	char str4[] = "         love            ";
+	char str1[] = "I really bat programming";
+	char str2[] = "I really bat programming";
+	char str3[] = "         bat            ";
+	char str4[] = "         bat            ";
 	char str5[] = "aaa;,bbb,";
 	char str6[] = "aaa;,bbb,";
 	char *token1 = NULL;
@@ -93,5 +93,6 @@ void __attribute__((constructor)) strtok_test(void)
  */
 int main(void)
 {
+	strtok_test();
 	return (0);
 }

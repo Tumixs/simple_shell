@@ -14,33 +14,47 @@
 char *_strtok(char *str, const char *delim)
 {
 	static char *nxtbyte;
+	static int counter;
+	int i;
 	char *token = NULL;
 
 	if (str != NULL)
+	{
 		nxtbyte = str; /* Stores string perm */
+		counter = 0;
+	}
+	i = counter;
 	if (nxtbyte == NULL || *nxtbyte == '\0')
 		return (NULL);
-	token = nxtbyte;
-
-	while (*(nxtbyte++))
+	/* Move to first valid token start */
+	for (; nxtbyte[i]; i++)
 	{
-		if (*nxtbyte == '\0')
+		if (!strchr(delim, nxtbyte[i]))
+		{
+			token = (nxtbyte + i);
+			break;
+		}
+		else
+			nxtbyte[i] = '\0';
+	}
+	/* Scan fwd until hit delim */
+	for(; nxtbyte[i]; i++)
+	{
+		if (nxtbyte[i] == '\0')
 		{
 			nxtbyte = NULL;
+			counter = i;
 			return (token);
 		}
-		if (*nxtbyte == *delim)
+		if (strchr(delim, nxtbyte[i]))
+		{	
+			nxtbyte[i] = '\0';
+			i++;
 			break;
+		}
 	}
-	*nxtbyte = '\0';
-	while (*nxtbyte++)
-	{
-		if (*(nxtbyte) == *delim)
-			nxtbyte++;
-
-		if (*(nxtbyte) == '\0')
-			return (NULL);
-	}
-
+	/* Move to start of next valid token */
+	counter = i;
 	return (token);
 }
+

@@ -140,11 +140,15 @@ int unsetenv_msk(char **args)
  */
 int quit(char **status)
 {
+	int flag = 'A';
+
+	if (status[1])
+		flag = atoi(status[1]);
 	free(*status);
 	free_pathlist(path_lt);
 	free_env(environ);
-	if (!status[1])
+	if (flag == 'A')
 		exit(0);
-	exit(atoi(status[1]));
+	exit(flag);
 
 }

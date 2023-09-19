@@ -17,7 +17,8 @@ void handler(int sig);
  */
 int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 {
-	char *cmd = NULL, *token = NULL, **new_environ;
+	char *cmd = NULL; /* init by getline */
+	char *token = NULL, **new_environ;
 	size_t len = 0;
 	int count, wstatus = 0;
 	char *arg[1024] = {0};
