@@ -1,7 +1,7 @@
- /*
+/*
  * commons
- * Author: Asere Oluwatumise .S & Oladosu adebisi L.
- *\
+ * Author: Asere Oluwatumise .S
+ */
 #ifndef MAIN_H
 #define MAIN_H
 

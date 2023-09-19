@@ -1,6 +1,6 @@
 /*
  * Simple_shell: shell.c
- * Author: Asere Oluwtumise .S & Oladosu adebisi L.
+ * Author: Asere Oluwtumise .S
  */
 #include "common.h"
 #include "env.h"

@@ -1,6 +1,6 @@
 /*
  * path methods
- * Author: Asere Oluwatumise S. & Oladosu adebisi L.
+ * Author: Asere Oluwatumise S.
  */
 #ifndef PATH_H
 #define PATH_H

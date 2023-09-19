@@ -1,6 +1,6 @@
 /*
  * Environment methods
- * Author: Asere Oluwatumise S. & oladosu adebisi L.
+ * Author: Asere Oluwatumise S.
  */
 
 /* setenv() and unsetenv() are not compliant with task declaration. */
@@ -37,17 +37,17 @@ char **build_env(const char *append, const char *remove)
 	{
 		if (remove)
 		{
-			del = strncmp(environ[i], remove, _strlen(remove));
+			del = strncmp(environ[i], remove, strlen(remove));
 			if (del == 0)
 				continue;
 		}
-		tmp = malloc((_strlen(environ[i]) + 1) * sizeof(char));
+		tmp = malloc((strlen(environ[i]) + 1) * sizeof(char));
 		if (tmp == NULL)
 		{
 			free_env(env_copy);
 			return (NULL);
 		}
-		_strcpy(tmp, environ[i]);
+		strcpy(tmp, environ[i]);
 		env_copy[j] = tmp;
 		j++;
 		tmp = NULL;
@@ -55,8 +55,8 @@ char **build_env(const char *append, const char *remove)
 
 	if (append)
 	{
-		tmp = malloc((_strlen(append) + 1) * sizeof(char));
-		_strcpy(tmp, append);
+		tmp = malloc((strlen(append) + 1) * sizeof(char));
+		strcpy(tmp, append);
 		env_copy[len - 2] = tmp;
 		tmp = NULL;
 	}
@@ -74,7 +74,7 @@ char **_getenvaddr(const char *name)
 	char **env_ptr = environ;
 
 	for (; *env_ptr; env_ptr++)
-		if (!strncmp((*env_ptr), name, _strlen(name)))
+		if (!strncmp((*env_ptr), name, strlen(name)))
 			return (env_ptr);
 	return (NULL);
 }
@@ -89,7 +89,7 @@ char *_getenv(const char *name)
 	int i;
 
 	for (i = 0; environ[i]; i++)
-		if (!strncmp(environ[i], name, _strlen(name)))
+		if (!strncmp(environ[i], name, strlen(name)))
 			return (environ[i]);
 	return (NULL);
 }
@@ -137,17 +137,17 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (!name)
 		return (-1);
 	/* Not required by ALX checker */
-	if (_strchr(name, '=') || _strchr(value, '='))
+	if (strchr(name, '=') || strchr(value, '='))
 	{
 		write(STDERR_FILENO, "Error: name cannot contain an =\n", 32);
 		return (-1);
 	}
-	new = malloc((_strlen(name) + _strlen(value) + 2) * sizeof(char)); /* 1 for = */
+	new = malloc((strlen(name) + strlen(value) + 2) * sizeof(char)); /* 1 for = */
 	if (new == NULL)
 		return (-1);
-	_strcpy(new, name);
-	_strcat(new, "=");
-	_strcat(new, value);
+	strcpy(new, name);
+	strcat(new, "=");
+	strcat(new, value);
 	/* Check if new exists in current environ */
 	old = _getenvaddr(name);
 	if (old != NULL)

@@ -1,6 +1,6 @@
 /**
  * Simple_shell: test_getline.c
- * Author: Asere Oluwatumise S. & Oladosu adebisi L.
+ * Author: Asere Oluwatumise S.
  * Comapring std-lib getline() with custom build
  */
 #include "common.h"

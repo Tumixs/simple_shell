@@ -1,6 +1,6 @@
 /*
  * File: strtok.c
- * Author: Asere Oluwatumise S. & Oladosu adebisi L.
+ * Author: Asere Oluwatumise.c
  */
 #include "common.h"
 /**
