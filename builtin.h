@@ -2,11 +2,16 @@
 #define BUILTIN_H
 
 typedef int(*insider)(char **);
+/**
+ * struct builtin - Structure for builtin commands.
+ * @cmdname: Builtin name.
+ * @f: function pointer.
+ */
 typedef struct builtin
 {
 	char *cmdname;
-	int (*f)(char** args);
-}builtin;
+	int (*f)(char **args);
+} builtin;
 int runbuiltin(char **arg);
 int (*getbuiltin(char *cmd))(char **args);
 int quit(char **status);

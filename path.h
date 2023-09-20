@@ -1,9 +1,10 @@
+#ifndef PATH_H
+#define PATH_H
 /*
  * path methods
  * Author: Asere Oluwatumise S.
  */
-#ifndef PATH_H
-#define PATH_H
+
 /**
  * struct path - A `PATH` struct for the process environment object `PATH`.
  * Description: Use to create list of environment `PATH`

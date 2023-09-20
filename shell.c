@@ -25,7 +25,7 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 	pid_t mypid;
 	char *dir = NULL;
 	int hist = 0;
-	
+
 	/* Init */
 	if (signal(SIGINT, handler) == SIG_ERR)
 		return (-1);
@@ -60,7 +60,8 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 			cmd = NULL;
 			continue;
 		}
-		if ((arg[0] = _strtok(cmd, " ")) == NULL)
+		arg[0] = _strtok(cmd, " ");
+		if (arg[0] == NULL)
 		{
 			write(STDOUT_FILENO, "$ ", 2);
 			continue;

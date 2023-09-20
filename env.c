@@ -29,9 +29,7 @@ char **build_env(const char *append, const char *remove)
 		len -= 1;
 	env_copy = malloc((++len) * sizeof(char *));
 	if (env_copy == NULL)
-	{
 		return (NULL);
-	}
 	env_copy[len - 1] = NULL;
 	for (i = 0, j = 0; environ[i]; i++)
 	{
@@ -52,7 +50,6 @@ char **build_env(const char *append, const char *remove)
 		j++;
 		tmp = NULL;
 	}
-
 	if (append)
 	{
 		tmp = malloc((strlen(append) + 1) * sizeof(char));
@@ -63,21 +60,6 @@ char **build_env(const char *append, const char *remove)
 	return (env_copy);
 }
 
-/**
- * _getenvaddr - Gets an enviroment variable.
- *
- * @name: Name of env varaible
- * Return: Returns the address of the variable
- */
-char **_getenvaddr(const char *name)
-{
-	char **env_ptr = environ;
-
-	for (; *env_ptr; env_ptr++)
-		if (!strncmp((*env_ptr), name, strlen(name)))
-			return (env_ptr);
-	return (NULL);
-}
 /**
  * _getenv - Gets an enviroment variable.
  *
@@ -94,20 +76,6 @@ char *_getenv(const char *name)
 	return (NULL);
 }
 
-/**
- * print_env - Prints the environment.
- */
-int print_env(UNUSED char **env)
-{
-	int i;
-
-	for (i = 0; environ[i]; i++)
-	{
-		write(STDIN_FILENO, environ[i], strlen(environ[i]));
-		write(STDIN_FILENO, "\n", 1);
-	}
-	return (0);
-}
 
 /**
  * free_env - Frees the environment.
@@ -136,6 +104,8 @@ int _setenv(const char *name, const char *value, int overwrite)
 
 	if (!name)
 		return (-1);
+	if (!value)
+		return (-1);
 	/* Not required by ALX checker */
 	if (strchr(name, '=') || strchr(value, '='))
 	{
@@ -147,7 +117,8 @@ int _setenv(const char *name, const char *value, int overwrite)
 		return (-1);
 	strcpy(new, name);
 	strcat(new, "=");
-	strcat(new, value);
+	if (value)
+		strcat(new, value);
 	/* Check if new exists in current environ */
 	old = _getenvaddr(name);
 	if (old != NULL)
