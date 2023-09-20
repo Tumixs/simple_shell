@@ -35,25 +35,25 @@ char **build_env(const char *append, const char *remove)
 	{
 		if (remove)
 		{
-			del = strncmp(environ[i], remove, strlen(remove));
+			del = _strncmp(environ[i], remove, _strlen(remove));
 			if (del == 0)
 				continue;
 		}
-		tmp = malloc((strlen(environ[i]) + 1) * sizeof(char));
+		tmp = malloc((_strlen(environ[i]) + 1) * sizeof(char));
 		if (tmp == NULL)
 		{
 			free_env(env_copy);
 			return (NULL);
 		}
-		strcpy(tmp, environ[i]);
+		_strcpy(tmp, environ[i]);
 		env_copy[j] = tmp;
 		j++;
 		tmp = NULL;
 	}
 	if (append)
 	{
-		tmp = malloc((strlen(append) + 1) * sizeof(char));
-		strcpy(tmp, append);
+		tmp = malloc((_strlen(append) + 1) * sizeof(char));
+		_strcpy(tmp, append);
 		env_copy[len - 2] = tmp;
 		tmp = NULL;
 	}
@@ -71,11 +71,10 @@ char *_getenv(const char *name)
 	int i;
 
 	for (i = 0; environ[i]; i++)
-		if (!strncmp(environ[i], name, strlen(name)))
+		if (!_strncmp(environ[i], name, _strlen(name)))
 			return (environ[i]);
 	return (NULL);
 }
-
 
 /**
  * free_env - Frees the environment.
@@ -107,18 +106,18 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (!value)
 		return (-1);
 	/* Not required by ALX checker */
-	if (strchr(name, '=') || strchr(value, '='))
+	if (_strchr(name, '=') || _strchr(value, '='))
 	{
 		write(STDERR_FILENO, "Error: name cannot contain an =\n", 32);
 		return (-1);
 	}
-	new = malloc((strlen(name) + strlen(value) + 2) * sizeof(char)); /* 1 for = */
+	new = malloc((_strlen(name) + _strlen(value) + 2) * sizeof(char)); /* 1 for = */
 	if (new == NULL)
 		return (-1);
-	strcpy(new, name);
-	strcat(new, "=");
+	_strcpy(new, name);
+	_strcat(new, "=");
 	if (value)
-		strcat(new, value);
+		_strcat(new, value);
 	/* Check if new exists in current environ */
 	old = _getenvaddr(name);
 	if (old != NULL)
@@ -164,4 +163,3 @@ int _unsetenv(const char *name)
 	}
 	return (0);
 }
-

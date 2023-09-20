@@ -28,7 +28,7 @@ char *_strtok(char *str, const char *delim)
 		return (NULL);
 	for (; nxtbyte[i]; i++) /* mov to first valid token */
 	{
-		if (!strchr(delim, nxtbyte[i]))
+		if (!_strchr(delim, nxtbyte[i]))
 		{
 			token = (nxtbyte + i);
 			break;
@@ -36,7 +36,7 @@ char *_strtok(char *str, const char *delim)
 		else
 			nxtbyte[i] = '\0';
 	}
-	for ( ; nxtbyte[i]; i++) /* Scan fwd till nxt delim */
+	for (; nxtbyte[i]; i++) /* Scan fwd till nxt delim */
 	{
 		if (nxtbyte[i] == '\0')
 		{
@@ -44,7 +44,7 @@ char *_strtok(char *str, const char *delim)
 			counter = i;
 			return (token);
 		}
-		if (strchr(delim, nxtbyte[i]))
+		if (_strchr(delim, nxtbyte[i]))
 		{
 			nxtbyte[i] = '\0';
 			i++;
@@ -54,4 +54,3 @@ char *_strtok(char *str, const char *delim)
 	counter = i;
 	return (token);
 }
-

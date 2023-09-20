@@ -21,9 +21,9 @@ int main(void)
 	_getline(&ptr2, &len2, stdin);
 	printf("std: %s\tlenght: %ld\n", ptr1, len1);
 	printf("custom: %s\tlenght: %ld\n", ptr2, len2);
-	if ((strcmp(ptr1, ptr2)) != 0)
+	if ((_strcmp(ptr1, ptr2)) != 0)
 		printf("Error: string differs!!\n");
-	if (strlen(ptr1) != strlen(ptr2))
+	if (_strlen(ptr1) != _strlen(ptr2))
 		printf("Error: Length differs!!\n");
 
 	/* Test 2 */
@@ -34,9 +34,9 @@ int main(void)
 	_getline(&ptr2, &len2, stdin);
 	printf("std: %s\tlenght: %ld\n", ptr1, len1);
 	printf("custom: %s\tlenght: %ld\n", ptr2, len2);
-	if ((strcmp(ptr1, ptr2)) != 0)
+	if ((_strcmp(ptr1, ptr2)) != 0)
 		printf("Error: string differs!!\n");
-	if (strlen(ptr1) != strlen(ptr2))
+	if (_strlen(ptr1) != _strlen(ptr2))
 		printf("Error: Length differs!!\n");
 
 	return (0);

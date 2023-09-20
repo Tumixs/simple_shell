@@ -32,23 +32,21 @@ int runbuiltin(char **arg)
 int (*getbuiltin(char *cmd))(char **cmd)
 {
 	builtin func[] = {
-		{"cd", cd},
-		{"setenv", setenv_msk},
-		{"unsetenv", unsetenv_msk},
-		{"exit", quit},
-		/*{"donut", donut},*/
-		{"env", print_env},
-		{NULL, NULL}
-	};
+	    {"cd", cd},
+	    {"setenv", setenv_msk},
+	    {"unsetenv", unsetenv_msk},
+	    {"exit", quit},
+	    /*{"donut", donut},*/
+	    {"env", print_env},
+	    {NULL, NULL}};
 	int i;
 
 	for (i = 0; func[i].cmdname; i++)
 	{
-		if (strcmp(cmd, func[i].cmdname) == 0)
+		if (_strcmp(cmd, func[i].cmdname) == 0)
 			break;
 	}
 	return (func[i].f);
-
 }
 
 /**
@@ -96,5 +94,4 @@ int quit(char **status)
 	if (flag == 'A')
 		exit(0);
 	exit(flag);
-
 }

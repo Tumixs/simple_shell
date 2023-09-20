@@ -52,7 +52,7 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 	while ((_getline(&cmd, &len, stdin)) != -1)
 	{
 		hist++;
-		cmd[strlen(cmd) - 1] = '\0';
+		cmd[_strlen(cmd) - 1] = '\0';
 		if (cmd[0] == '#') /* comments */
 		{
 			write(STDOUT_FILENO, "$ ", 2);
