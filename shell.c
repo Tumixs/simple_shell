@@ -50,8 +50,16 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 	}
 	write(STDIN_FILENO, "$ ", 2);
 	/* Main loop */
-	while ((_getline(&cmd, &len, stdin)) != -1)
+	while (1)
 	{
+		/*
+		 * if (WIFSIGNALED(wstatus))
+		 *	if (WTERMSIG(wstatus) != SIGINT)
+		 */
+		if (hist != 0)
+			write(STDOUT_FILENO, "$ ", 2);
+		if ((_getline(&cmd, &len, stdin)) == -1)
+			break;
 		hist++;
 		cmd[_strlen(cmd) - 1] = '\0';
 		if (cmd[0] == '#') /* comments */
@@ -110,10 +118,6 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 		else
 		{
 			wait(&wstatus);
-			if (WIFSIGNALED(wstatus))
-				if (WTERMSIG(wstatus) == SIGINT)
-					continue;
-			write(STDOUT_FILENO, "$ ", 2);
 			free(cmd);
 			free(dir);
 			dir = NULL;

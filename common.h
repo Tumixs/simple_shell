@@ -22,5 +22,6 @@
 /*char *prompt = "$ ";*/
 ssize_t _getline(char **line, size_t *len, FILE *stream);
 char *_strtok(char *str, const char *delim);
+void init(void);
 
 #endif
