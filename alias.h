@@ -4,6 +4,7 @@
  * struct alias_s - ALIAS structure
  * @name: Name of alias.
  * @value: Alias value.
+ * @next: Next Alias.
  */
 typedef struct alias_s
 {

@@ -6,7 +6,7 @@
 #include "builtin.h"
 #include "env.h"
 #include "path.h"
-int cd_home();
+int cd_home(void);
 /**
  * cd - Changes the working directory.
  * @path: Pathname.
@@ -60,6 +60,7 @@ int cd(char **path)
 	free(newpwd);
 	return (0);
 }
+
 /**
  * cd_home - Changes the working directory to $HOME.
  * Return: Returns the exit status of the command.

@@ -111,7 +111,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 		write(STDERR_FILENO, "Error: name cannot contain an =\n", 32);
 		return (-1);
 	}
-	new = malloc((_strlen(name) + _strlen(value) + 2) * sizeof(char)); /* 1 for = */
+	new = malloc((_strlen(name) + _strlen(value) + 2) * sizeof(char));
 	if (new == NULL)
 		return (-1);
 	_strcpy(new, name);
@@ -122,7 +122,6 @@ int _setenv(const char *name, const char *value, int overwrite)
 	old = _getenvaddr(name);
 	if (old != NULL)
 	{
-		/* env exists. Avoid rewriting the whole array */
 		if (overwrite)
 		{
 			free((*old));

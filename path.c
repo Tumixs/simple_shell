@@ -107,7 +107,7 @@ path *build_pathlist()
 	while ((token = _strtok(NULL, ":")))
 	{
 		head = append_path(head, token);
-		if ((head == NULL))
+		if (head == NULL)
 			free_pathlist(head);
 	}
 	free(env_path);

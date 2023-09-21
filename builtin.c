@@ -23,6 +23,7 @@ int runbuiltin(char **arg)
 	ret = runner(arg);
 	return (ret);
 }
+
 /**
  * getbuiltin - Gets a builtin function.
  * @cmd: Builtin identifier.
@@ -36,7 +37,6 @@ int (*getbuiltin(char *cmd))(char **cmd)
 	    {"setenv", setenv_msk},
 	    {"unsetenv", unsetenv_msk},
 	    {"exit", quit},
-	    /*{"donut", donut},*/
 	    {"env", print_env},
 	    {NULL, NULL}};
 	int i;
@@ -73,7 +73,6 @@ int unsetenv_msk(char **args)
 	int ret;
 
 	ret = _unsetenv(args[1]);
-
 	return (ret);
 }
 
