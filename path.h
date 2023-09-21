@@ -17,7 +17,7 @@ typedef struct path
 	char *pathname;
 } path;
 
-path *path_lt;
+extern path *path_lt;
 path *build_pathlist();
 path *append_path(path *head, char *pathname);
 void free_pathlist(path *head);

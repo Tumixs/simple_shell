@@ -1,7 +1,7 @@
 #ifndef BUILTIN_H
 #define BUILTIN_H
 
-typedef int(*insider)(char **);
+typedef int (*insider)(char **);
 /**
  * struct builtin - Structure for builtin commands.
  * @cmdname: Builtin name.
@@ -20,6 +20,5 @@ int setenv_msk(char **args);
 int unsetenv_msk(char **args);
 int donut(char **args);
 /*int print_env(UNUSED char **args);*/
-
 
 #endif

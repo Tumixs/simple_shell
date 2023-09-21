@@ -25,6 +25,7 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 	pid_t mypid;
 	char *dir = NULL;
 	int hist = 0;
+	path *path_lt;
 
 	/* Init */
 	if (signal(SIGINT, handler) == SIG_ERR)

@@ -3,9 +3,9 @@
  * Author: Asere Oluwatumise S.
  */
 #include "common.h"
+#include "path.h"
 #include "builtin.h"
 #include "env.h"
-#include "path.h"
 
 /**
  * runbuiltin - Executes a builtin routine.
@@ -38,7 +38,8 @@ int (*getbuiltin(char *cmd))(char **cmd)
 	    {"unsetenv", unsetenv_msk},
 	    {"exit", quit},
 	    {"env", print_env},
-	    {NULL, NULL}};
+	    {NULL, NULL},
+	};
 	int i;
 
 	for (i = 0; func[i].cmdname; i++)
@@ -84,6 +85,7 @@ int unsetenv_msk(char **args)
 int quit(char **status)
 {
 	int flag = 'A';
+	path *path_lt = path_lt;
 
 	if (status[1])
 		flag = atoi(status[1]);

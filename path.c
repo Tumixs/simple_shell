@@ -132,6 +132,12 @@ char *getcmdpath(char *cmd, path *path_lt)
 	/*UNUSED path *next;*/
 	while (path_copy != NULL)
 	{
+		if (cmd[0] == '/')
+		{
+			dir = malloc(i * sizeof(char));
+			_strcpy(dir, cmd);
+			return (dir);
+		}
 
 		j = _strlen(path_copy->pathname);
 		dir = malloc((i + j + 2) * (sizeof(char))); /* extra 1 for the slash */
