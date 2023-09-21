@@ -48,23 +48,22 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 		write(STDERR_FILENO, "failed to build path\n", 21);
 		return (-1);
 	}
-	write(STDIN_FILENO, "$ ", 2);
 	/* Main loop */
 	while (1)
 	{
 		/*
 		 * if (WIFSIGNALED(wstatus))
 		 *	if (WTERMSIG(wstatus) != SIGINT)
+		 * if (hist != 0)
+		 * write(STDOUT_FILENO, "$ ", 2);
 		 */
-		if (hist != 0)
-			write(STDOUT_FILENO, "$ ", 2);
 		if ((_getline(&cmd, &len, stdin)) == -1)
 			break;
 		hist++;
 		cmd[_strlen(cmd) - 1] = '\0';
 		if (cmd[0] == '#') /* comments */
 		{
-			write(STDOUT_FILENO, "$ ", 2);
+			/*write(STDOUT_FILENO, "$ ", 2);*/
 			free(cmd);
 			cmd = NULL;
 			continue;
@@ -72,7 +71,7 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 		arg[0] = _strtok(cmd, " ");
 		if (arg[0] == NULL)
 		{
-			write(STDOUT_FILENO, "$ ", 2);
+			/*write(STDOUT_FILENO, "$ ", 2);*/
 			continue;
 		}
 		for (count = 1;; count += 1)
@@ -97,7 +96,7 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 		{
 
 			dprintf(STDERR_FILENO, "%s: %d: %s: not found", av[0], hist, arg[0]);
-			write(STDOUT_FILENO, "\n$ ", 3);
+			/*write(STDOUT_FILENO, "\n$ ", 3);*/
 			free(cmd);
 			cmd = NULL;
 			continue;
@@ -110,10 +109,10 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 				dprintf(STDERR_FILENO,
 					"%s: %d: %s: Permission denied\n",
 					av[0], hist, arg[0]);
-				return (EXIT_FAILURE);
+				return (-1);
 			}
 			else
-				return (EXIT_SUCCESS);
+				return (0);
 		}
 		else
 		{
@@ -126,7 +125,6 @@ int main(UNUSED int ac, UNUSED char **av, UNUSED char **env)
 		/* else */
 		/* wait(&wstatus); */
 	}
-	putchar('\n');
 	free(cmd);
 	free(dir);
 	free_pathlist(path_lt);
